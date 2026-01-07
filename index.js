@@ -18,6 +18,10 @@ app.get('/', (req, res) => {
     <body>
       <h1>Welcome</h1>
       <h2>Initial Version of the App (v2.0)</h2>
+      <h3>Deployment Status</h3>
+      <div style="border: 2px solid black; padding: 10px; display: inline-block; margin-bottom: 20px;">
+        <div style="background-color: green; color: white; padding: 10px; text-align: center;">Green Deployment</div>
+      </div>
       <p>Memory Usage:</p>
       <ul>
         <li>RSS: ${(memUsage.rss / 1024 / 1024).toFixed(2)} MB</li>
