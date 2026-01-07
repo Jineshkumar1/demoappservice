@@ -58,12 +58,21 @@ jobs:
           }
       continue-on-error: false
 
+    # - name: Deploy to Azure Web App
+    #   uses: azure/webapps-deploy@v2
+    #   id: deploy_azure_web
+    #   if: steps.azure_login.outcome == 'success'
+    #   with:
+    #     app-name: 'jpappdemo' 
+    #     package: .
+
+
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       id: deploy_azure_web
       if: steps.azure_login.outcome == 'success'
       with:
-        app-name: 'jpappdemo' 
+        app-name: 'jpappdemo'
+        slot-name: 'staging'
         package: .
-
     

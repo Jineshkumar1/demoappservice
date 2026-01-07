@@ -1,6 +1,6 @@
 {
   "name": "demo-appservice",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Basic Node.js app for Azure Web App demo",
   "main": "index.js",
   "scripts": {

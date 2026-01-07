@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     </head>
     <body>
       <h1>Welcome</h1>
-      <h2>Initial Version of the App (v1.0)</h2>
+      <h2>Initial Version of the App (v2.0)</h2>
       <p>Memory Usage:</p>
       <ul>
         <li>RSS: ${(memUsage.rss / 1024 / 1024).toFixed(2)} MB</li>
