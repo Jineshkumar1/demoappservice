@@ -22,13 +22,13 @@ app.get('/', async (req, res) => {
     // Production
     const prodResourceId = `/subscriptions/${subId}/resourceGroups/${rg}/providers/Microsoft.Web/sites/${siteName}`;
     const prodMetrics = await client.queryResource(prodResourceId, {
-      metricNames: ["CpuTime", "MemoryPercentage"],
+      metricNames: ["CpuPercentage", "MemoryPercentage"],
       timespan: { duration: "PT1H" },
       granularity: "PT1H",
       aggregations: ["Average"]
     });
-    if (prodMetrics.metrics.CpuTime && prodMetrics.metrics.CpuTime.length > 0 && prodMetrics.metrics.CpuTime[0].data.length > 0) {
-      cpuProd = prodMetrics.metrics.CpuTime[0].data[0].average || 0;
+    if (prodMetrics.metrics.CpuPercentage && prodMetrics.metrics.CpuPercentage.length > 0 && prodMetrics.metrics.CpuPercentage[0].data.length > 0) {
+      cpuProd = prodMetrics.metrics.CpuPercentage[0].data[0].average || 0;
     }
     if (prodMetrics.metrics.MemoryPercentage && prodMetrics.metrics.MemoryPercentage.length > 0 && prodMetrics.metrics.MemoryPercentage[0].data.length > 0) {
       memProd = prodMetrics.metrics.MemoryPercentage[0].data[0].average || 0;
@@ -37,13 +37,13 @@ app.get('/', async (req, res) => {
     // Staging
     const stagingResourceId = `${prodResourceId}/slots/staging`;
     const stagingMetrics = await client.queryResource(stagingResourceId, {
-      metricNames: ["CpuTime", "MemoryPercentage"],
+      metricNames: ["CpuPercentage", "MemoryPercentage"],
       timespan: { duration: "PT1H" },
       granularity: "PT1H",
       aggregations: ["Average"]
     });
-    if (stagingMetrics.metrics.CpuTime && stagingMetrics.metrics.CpuTime.length > 0 && stagingMetrics.metrics.CpuTime[0].data.length > 0) {
-      cpuStaging = stagingMetrics.metrics.CpuTime[0].data[0].average || 0;
+    if (stagingMetrics.metrics.CpuPercentage && stagingMetrics.metrics.CpuPercentage.length > 0 && stagingMetrics.metrics.CpuPercentage[0].data.length > 0) {
+      cpuStaging = stagingMetrics.metrics.CpuPercentage[0].data[0].average || 0;
     }
     if (stagingMetrics.metrics.MemoryPercentage && stagingMetrics.metrics.MemoryPercentage.length > 0 && stagingMetrics.metrics.MemoryPercentage[0].data.length > 0) {
       memStaging = stagingMetrics.metrics.MemoryPercentage[0].data[0].average || 0;
