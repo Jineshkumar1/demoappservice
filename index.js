@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
       <h2>Initial Version of the App (v2.0)</h2>
       <h3>Deployment Status</h3>
       <div style="border: 2px solid black; padding: 10px; display: inline-block; margin-bottom: 20px;">
-        <div style="background-color: green; color: white; padding: 10px; text-align: center;">Blue Deployment</div>
+        <div style="background-color: green; color: white; padding: 10px; text-align: center;">Green Deployment</div>
       </div>
       <p>Memory Usage:</p>
       <ul>
