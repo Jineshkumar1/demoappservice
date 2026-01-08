@@ -1,4 +1,4 @@
-name: Swap Deployment Slots
+name: Swap Deployment Slots 2
 
 on:
   workflow_dispatch:
