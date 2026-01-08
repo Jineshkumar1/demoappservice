@@ -29,6 +29,26 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Display Swap Details
+      run: |
+        VERSION=$(node -p "require('./package.json').version")
+        SWAP_DATE=$(date '+%Y-%m-%d %H:%M:%S')
+        echo "## 🔄 Slot Swap Details" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+        echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Application Name | jpappdemo |" >> $GITHUB_STEP_SUMMARY
+        echo "| Swap From Slot | ${{ inputs.from_slot }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Swap To Slot | ${{ inputs.to_slot }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Initiated by | ${{ github.actor }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Run ID | ${{ github.run_id }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Run Number | ${{ github.run_number }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Artifact Version | $VERSION |" >> $GITHUB_STEP_SUMMARY
+        echo "| Timestamp | $SWAP_DATE |" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📋 Summary" >> $GITHUB_STEP_SUMMARY
+        echo "Swapping ${{ inputs.from_slot }} slot to ${{ inputs.to_slot }} slot for jpappdemo application." >> $GITHUB_STEP_SUMMARY
+
     - name: Login to Azure
       uses: azure/login@v1
       with:
