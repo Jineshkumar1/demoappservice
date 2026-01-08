@@ -1,7 +1,18 @@
 name: Swap Deployment Slots
 
 on:
+#   push:
+#     branches:
+#       - main
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to swap'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
 
 jobs:
   swap-slots:
