@@ -1,18 +1,25 @@
 name: Swap Deployment Slots
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to swap'
+      from_slot:
+        description: 'Slot to swap from'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      to_slot:
+        description: 'Slot to swap to'
         required: true
         default: 'production'
         type: choice
         options:
+          - staging
           - production
+
 
 jobs:
   swap-slots:
@@ -33,6 +40,6 @@ jobs:
             "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
           }
 
-    - name: Swap slots from staging to production
+    - name: Swap slots from ${{ inputs.from_slot }} to ${{ inputs.to_slot }}
       run: |
-        az webapp deployment slot swap --name jpappdemo --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --slot staging --target-slot production
+        az webapp deployment slot swap --name jpappdemo --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --slot ${{ inputs.from_slot }} --target-slot ${{ inputs.to_slot }}
